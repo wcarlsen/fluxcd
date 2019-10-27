@@ -11,6 +11,9 @@ snap install microk8s --classic
 
 # Enable addons
 sudo microk8s.enable dns helm storage
+
+# Get kube config and remember to change address to other than localhost
+sudo microk8s.kubectl config view --raw
 ```
 
 ## Install/deploy [fluxcd](https://fluxcd.io/) onto microk8s (requires helm, tiller and dns enabled)
