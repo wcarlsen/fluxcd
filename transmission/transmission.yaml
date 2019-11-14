@@ -32,6 +32,13 @@ spec:
           containerPort: 9091
         - name: torrent
           containerPort: 51413
+        volumeMounts:
+        - name: config
+          mountPath: "/config"
+        - name: watch
+          mountPath: "/watch"
+        - name: downloads
+          mountPath: "/downloads"
         env:
         - name: TZ
           value: Europe/Copenhagen
@@ -45,3 +52,68 @@ spec:
         #     secretKeyRef:
         #       name: transmission
         #       key: PASS
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: transmission-config
+      - name: watch
+        persistentVolumeClaim:
+          claimName: transmission-watch
+      - name: downloads
+        persistentVolumeClaim:
+          claimName: transmission-downloads
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: transmission
+  namespace: transmission
+spec:
+  type: ClusterIP
+  selector:
+    app: transmission
+  ports:
+  - name: web
+    protocol: TCP
+    port: 9091
+    targetPort: web
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: transmission-config
+  namespace: transmission
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: transmission-watch
+  namespace: transmission
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: transmission-downloads
+  namespace: transmission
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
