@@ -22,16 +22,16 @@ spec:
           ports:
           - name: web
             containerPort: 8989
-        volumeMounts:
-        - name: config
-          mountPath: "/config"
-        - name: tvseries
-          mountPath: "/tvseries"
-        - name: downloads
-          mountPath: "/downloads"
-        env:
-          - name: TZ
-            value: Europe/Copenhagen
+          volumeMounts:
+          - name: config
+            mountPath: "/config"
+          - name: tvseries
+            mountPath: "/tvseries"
+          - name: downloads
+            mountPath: "/downloads"
+          env:
+            - name: TZ
+              value: Europe/Copenhagen
       volumes:
       - name: config
         persistentVolumeClaim:
