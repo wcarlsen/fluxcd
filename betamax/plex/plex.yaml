@@ -22,6 +22,10 @@ spec:
         ports:
         - name: web
           containerPort: 32400
+        - name: extraport0
+          containerPort: 32469
+        - name: extraport1
+          containerPort: 32469
         volumeMounts:
         - name: config
           mountPath: "/config"
