@@ -36,7 +36,4 @@ spec:
               name: duckdns
               key: TOKEN
         - name: SUBDOMAINS
-          valueFrom:
-            secretKeyRef:
-              name: duckdns
-              key: SUBDOMAINS
+          value: wcarlsen

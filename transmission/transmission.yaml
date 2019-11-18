@@ -42,16 +42,13 @@ spec:
         env:
         - name: TZ
           value: Europe/Copenhagen
-        # - name: USER
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: transmission
-        #       key: USER
-        # - name: PASS
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: transmission
-        #       key: PASS
+        - name: USER
+          value: admin
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: transmission
+              key: PASSWORD
       volumes:
       - name: config
         persistentVolumeClaim:
