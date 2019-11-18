@@ -35,7 +35,7 @@ spec:
         - name: VERSION
           value: docker
         - name: UMASK_SET
-          value: 022
+          value: "022"
       volumes:
       - name: config
         persistentVolumeClaim:
