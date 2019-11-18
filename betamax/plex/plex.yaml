@@ -1,0 +1,119 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plex
+  namespace: betamax
+  labels:
+    app: plex
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plex
+  template:
+    metadata:
+      labels:
+        app: plex
+    spec:
+      containers:
+      - name: plex
+        image: linuxserver/plex:latest
+        ports:
+        - name: web
+          containerPort: 32400
+        volumeMounts:
+        - name: config
+          mountPath: "/config"
+        - name: tvseries
+          mountPath: "/tvseries"
+        - name: movies
+          mountPath: "/movies"
+        # - name: transcoding
+        #   mountPath: "/transcoding"
+        env:
+        - name: VERSION
+          value: docker
+        - name: UMASK_SET
+          value: 022
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: plex-config
+      - name: tvseries
+        persistentVolumeClaim:
+          claimName: plex-tvseries
+      - name: movies
+        persistentVolumeClaim:
+          claimName: plex-movies
+      # - name: transcoding
+      #   persistentVolumeClaim:
+      #     claimName: plex-transcoding
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plex
+  namespace: betamax
+spec:
+  type: ClusterIP
+  selector:
+    app: plex
+  ports:
+  - name: web
+    protocol: TCP
+    port: 32400
+    targetPort: web
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-config
+  namespace: betamax
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-tvseries
+  namespace: betamax
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 25Gi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-movies
+  namespace: betamax
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 25Gi
+
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: plex-transcoding
+#   namespace: betamax
+# spec:
+#   accessModes:
+#   - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 1Gi
