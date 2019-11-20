@@ -35,7 +35,10 @@ spec:
         - name: TZ
           value: Europe/Copenhagen
         - name: USER
-          value: admin
+          valueFrom:
+            secretKeyRef:
+              name: transmission
+              key: USER
         - name: PASS
           valueFrom:
             secretKeyRef:
