@@ -29,3 +29,11 @@ metadata:
   labels:
     name: letsencrypt
   name: letsencrypt
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    name: whoami
+  name: whoami
