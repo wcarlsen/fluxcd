@@ -1,0 +1,60 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: letsencrypt
+  namespace: letsencrypt
+  labels:
+    app: letsencrypt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: letsencrypt
+  template:
+    metadata:
+      labels:
+        app: letsencrypt
+    spec:
+      containers:
+      - name: letsencrypt
+        image: linuxserver/letsencrypt:latest
+        ports:
+        - name: https
+          containerPort: 443
+        env:
+        - name: TZ
+          value: Europe/Copenhagen
+        - name: DUCKDNSTOKEN
+          valueFrom:
+            secretKeyRef:
+              name: letsencrypt
+              key: DUCKDNSTOKEN
+        - name: URL
+          value: wcarlsen.duckdns.org
+        - name: SUBDOMAINS
+          value: wildcard
+        - name: VALIDATION
+          value: duckdns
+        - name: EMAIL
+          value: carlsenwilli@gmail.com
+        volumeMounts:
+        - name: config
+          mountPath: "/config"
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: letsencrypt-config
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: letsencrypt-config
+  namespace: letsencrypt
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
