@@ -143,7 +143,7 @@ metadata:
   name: traefik
 spec:
   type: LoadBalancer
-  loadBalancerIp: 192.168.1.240
+  loadBalancerIP: 192.168.1.240
   ports:
     - protocol: TCP
       name: web
