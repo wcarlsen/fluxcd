@@ -2,7 +2,6 @@ apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: ingressroutes.traefik.containo.us
-
 spec:
   group: traefik.containo.us
   version: v1alpha1
@@ -12,12 +11,10 @@ spec:
     singular: ingressroute
   scope: Namespaced
 
----
-apiVersion: apiextensions.k8s.io/v1beta1
+--- apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: ingressroutetcps.traefik.containo.us
-
 spec:
   group: traefik.containo.us
   version: v1alpha1
@@ -32,7 +29,6 @@ apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: middlewares.traefik.containo.us
-
 spec:
   group: traefik.containo.us
   version: v1alpha1
@@ -47,7 +43,6 @@ apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: tlsoptions.traefik.containo.us
-
 spec:
   group: traefik.containo.us
   version: v1alpha1
@@ -62,7 +57,6 @@ kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
   name: traefik-ingress-controller
-
 rules:
   - apiGroups:
       - ""
@@ -126,7 +120,6 @@ kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1beta1
 metadata:
   name: traefik-ingress-controller
-
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -166,6 +159,19 @@ metadata:
   name: traefik-ingress-controller
 
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: traefik
+  namespace: traefik
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+
+---
 kind: Deployment
 apiVersion: apps/v1
 metadata:
@@ -173,7 +179,6 @@ metadata:
   name: traefik
   labels:
     app: traefik
-
 spec:
   replicas: 1
   selector:
@@ -199,7 +204,7 @@ spec:
             - --certificatesresolvers.default.acme.storage=acme.json
             # Please note that this is the staging Let's Encrypt server.
             # Once you get things working, you should remove that whole line altogether.
-            - --certificatesresolvers.default.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+            #- --certificatesresolvers.default.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
           ports:
             - name: web
               containerPort: 8000
@@ -207,3 +212,10 @@ spec:
               containerPort: 4443
             - name: admin
               containerPort: 8080
+          volumeMounts:
+          - name: traefik
+            mountPath: /etc/traefik
+      volumes:
+      - name: traefik
+        persistentVolumeClaim:
+          claimName: traefik
