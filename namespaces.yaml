@@ -14,13 +14,13 @@ metadata:
     name: duckdns
   name: duckdns
 
-# ---
-# apiVersion: v1
-# kind: Namespace
-# metadata:
-#   labels:
-#     name: traefik
-#   name: traefik
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    name: traefik
+  name: traefik
 
 ---
 apiVersion: v1
