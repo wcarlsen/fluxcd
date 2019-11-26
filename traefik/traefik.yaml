@@ -195,6 +195,9 @@ spec:
         - name: traefik
           image: traefik:v2.0
           args:
+            - --log=true
+            - --log.level=INFO
+            - --accesslog=true
             - --api.insecure
             - --accesslog
             - --entrypoints.web.Address=:8000
