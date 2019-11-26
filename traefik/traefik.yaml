@@ -211,11 +211,11 @@ spec:
             # Once you get things working, you should remove that whole line altogether.
             #- --certificatesresolvers.default.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
           env:
-          - name: DUCKDNS_TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: duckdns
-                key: TOKEN
+            - name: DUCKDNS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: duckdns
+                  key: TOKEN
           ports:
             - name: web
               containerPort: 8000
