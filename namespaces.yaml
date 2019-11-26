@@ -21,19 +21,3 @@ metadata:
   labels:
     name: traefik
   name: traefik
-
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    name: letsencrypt
-  name: letsencrypt
-
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    name: whoami
-  name: whoami
