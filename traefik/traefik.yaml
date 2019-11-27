@@ -199,8 +199,7 @@ spec:
             - --log.level=INFO
             - --accesslog=true
             - --api.insecure
-            - --accesslog
-            - --accesslog.format=JSON
+            - --accessLog.format=json
             - --metrics.prometheus
             - --entrypoints.web.Address=:8000
             - --entrypoints.websecure.Address=:4443
