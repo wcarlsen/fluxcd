@@ -7,8 +7,7 @@ spec:
   version: v1alpha1
   names:
     kind: IngressRoute
-    plural: ingressroutes
-    singular: ingressroute
+    plural: ingressroutes singular: ingressroute
   scope: Namespaced
 
 ---
@@ -201,6 +200,7 @@ spec:
             - --api.insecure
             - --accesslog
             - --accesslog.format=JSON
+            - --metrics.prometheus
             - --entrypoints.web.Address=:8000
             - --entrypoints.websecure.Address=:4443
             - --providers.kubernetescrd
