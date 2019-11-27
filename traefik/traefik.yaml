@@ -200,6 +200,7 @@ spec:
             - --accesslog=true
             - --api.insecure
             - --accesslog
+            - --accesslog.format=JSON
             - --entrypoints.web.Address=:8000
             - --entrypoints.websecure.Address=:4443
             - --providers.kubernetescrd
