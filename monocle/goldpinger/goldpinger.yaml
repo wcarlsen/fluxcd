@@ -1,0 +1,14 @@
+cat <<EOF | kubectl apply -f -
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: goldpinger
+  namespace: monocle
+spec:
+  releaseName: goldpinger
+  chart:
+    repository: stable
+    version: 2.0.1
+    name: goldpinger
+EOF
+
