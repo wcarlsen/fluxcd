@@ -29,3 +29,11 @@ metadata:
   labels:
     app: metallb
   name: metallb-system
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app: monocle
+  name: monocle
