@@ -3,10 +3,12 @@ kind: HelmRelease
 metadata:
   name: goldpinger
   namespace: monocle
+  annotations:
+    flux.weave.works/automated: "true"
 spec:
   releaseName: goldpinger
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
-    version: 2.0.1
+    #version: 2.0.1
     name: goldpinger
 
