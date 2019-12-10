@@ -1,0 +1,25 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: loki-stack
+  namespace: monocle
+  annotations:
+    flux.weave.works/automated: "true"
+spec:
+  releaseName: loki-stack
+  chart:
+    repository: https://grafana.github.io/loki/charts
+    name: loki-stack
+    version: 0.23.0
+  values:
+    loki:
+      enabled: true
+    grafana:
+      enabled: true
+      sidecar:
+        datasources:
+          enabled: true
+    prometheus:
+      enabled: true
+    promtail:
+      enabled: true
