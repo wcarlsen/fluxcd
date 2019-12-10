@@ -16,19 +16,22 @@ sudo microk8s.enable dns helm storage metrics-server
 sudo microk8s.kubectl config view --raw
 ```
 
-## Install/deploy [fluxcd](https://fluxcd.io/) onto microk8s (requires helm, tiller and dns enabled)
+## Install/deploy [fluxcd](https://fluxcd.io/) onto microk8s (requires helm v3 and dns enabled)
 Create a Github public repo.
 ```bash
+# Create flux namespace
+kubectl create ns flux
+
 # Add fluxcd repo to helm
 helm repo add fluxcd https://charts.fluxcd.io
 
 # Apply flux custom resource
 kubectl apply -f https://raw.githubusercontent.com/fluxcd/flux/helm-0.10.1/deploy-helm/flux-helm-release-crd.yaml
 
-# Install flux helm operator
-helm upgrade -i flux \
---set helmOperator.create=true \
---set helmOperator.createCRD=false \
+# Install flux
+helm upgrade -i flux --wait \
+--set registry.pollInterval=1m \
+--set git.pollInterval=1m \
 --set git.url=git@github.com:YOURGITHUBUSER/REPO \
 --set additionalArgs={--sync-garbage-collection} \ # comment this line if you do not want flux to delete resources
 --namespace flux \
@@ -36,4 +39,22 @@ fluxcd/flux
 
 # Get flux ssh key and add it to your github repo with allow write access
 fluxctl identity --k8s-fwd-ns flux
+
+# Install helmRelease CRD
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/helm-v3-dev/deploy/flux-helm-release-crd.yaml
+
+# Install helm-operator
+# Note that you can find the latest image tags here https://hub.docker.com/repository/docker/fluxcd/helm-operator-prerelease/tags?page=1&ordering=last_updated
+helm upgrade -i helm-operator fluxcd/helm-operator --wait \
+--namespace flux \
+--set git.ssh.secretName=flux-git-deploy \
+--set git.pollInterval=1m \
+--set chartsSyncInterval=1m \
+--set configureRepositories.enable=true \
+--set configureRepositories.repositories[0].name=stable \
+--set configureRepositories.repositories[0].url=https://kubernetes-charts.storage.googleapis.com \
+--set extraEnvs[0].name=HELM_VERSION \
+--set extraEnvs[0].value=v3 \
+--set image.repository=docker.io/fluxcd/helm-operator-prerelease \
+--set image.tag=helm-v3-dev-ca9c8ba0
 ```
