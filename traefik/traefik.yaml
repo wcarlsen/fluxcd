@@ -144,7 +144,7 @@ spec:
       name: web
       port: 8000
     - protocol: TCP
-      name: admin
+      name: http
       port: 8080
     - protocol: TCP
       name: websecure
@@ -215,7 +215,7 @@ spec:
               containerPort: 8000
             - name: websecure
               containerPort: 4443
-            - name: admin
+            - name: http
               containerPort: 8080
           volumeMounts:
           - name: traefik
