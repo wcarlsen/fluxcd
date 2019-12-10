@@ -45,6 +45,7 @@ kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/helm-v3-
 
 # Install helm-operator
 # Note that you can find the latest image tags here https://hub.docker.com/repository/docker/fluxcd/helm-operator-prerelease/tags?page=1&ordering=last_updated
+# Also note that zsh might be a bitch, so switch to bash
 helm upgrade -i helm-operator fluxcd/helm-operator --wait \
 --namespace flux \
 --set git.ssh.secretName=flux-git-deploy \
