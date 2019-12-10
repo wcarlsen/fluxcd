@@ -11,15 +11,14 @@ spec:
     repository: https://grafana.github.io/loki/charts
     name: loki
   values:
+    loki:
+      enabled: true
     grafana:
       enabled: true
+      sidecar:
+        datasources:
+          enabled: true
     prometheus:
       enabled: true
-      alertmanager:
-        persistenVolume:
-          enabled: false
-      server:
-        persistenVolume:
-          enabled: false
-
-
+    promtail:
+      enabled: true
