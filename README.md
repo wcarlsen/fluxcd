@@ -54,6 +54,8 @@ helm upgrade -i helm-operator fluxcd/helm-operator --wait \
 --set configureRepositories.enable=true \
 --set configureRepositories.repositories[0].name=stable \
 --set configureRepositories.repositories[0].url=https://kubernetes-charts.storage.googleapis.com \
+-- set configureRepositories.repositories[1].name=loki \
+-- set configureRepositories.repositories[1].url=https://grafana.github.io/loki/charts \
 --set extraEnvs[0].name=HELM_VERSION \
 --set extraEnvs[0].value=v3 \
 --set image.repository=docker.io/fluxcd/helm-operator-prerelease \
