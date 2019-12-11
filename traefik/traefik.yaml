@@ -137,7 +137,7 @@ metadata:
   name: traefik
   namespace: traefik
   annotations:
-    prometheus.io/scrape: 'true'
+    prometheus.io/scrape: "true"
     prometheus.io/port: 8080
 spec:
   type: LoadBalancer
