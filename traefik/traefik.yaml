@@ -136,6 +136,9 @@ kind: Service
 metadata:
   name: traefik
   namespace: traefik
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/port: 8080
 spec:
   type: LoadBalancer
   loadBalancerIP: 192.168.1.240
@@ -144,7 +147,7 @@ spec:
       name: web
       port: 8000
     - protocol: TCP
-      name: http
+      name: admin
       port: 8080
     - protocol: TCP
       name: websecure
@@ -215,7 +218,7 @@ spec:
               containerPort: 8000
             - name: websecure
               containerPort: 4443
-            - name: http
+            - name: admin
               containerPort: 8080
           volumeMounts:
           - name: traefik
