@@ -138,7 +138,7 @@ metadata:
   namespace: traefik
   annotations:
     prometheus.io/scrape: "true"
-    prometheus.io/port: 8080
+    prometheus.io/port: "8080"
 spec:
   type: LoadBalancer
   loadBalancerIP: 192.168.1.240
