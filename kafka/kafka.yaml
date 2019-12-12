@@ -12,3 +12,5 @@ spec:
     repository: http://storage.googleapis.com/kubernetes-charts-incubator
     name: kafka
     version: 0.20.7
+  values:
+    replicas: 1
