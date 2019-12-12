@@ -11,4 +11,3 @@ spec:
     repository: https://kubernetes-charts.storage.googleapis.com/
     version: 2.0.1
     name: goldpinger
-  values:
