@@ -16,7 +16,8 @@ spec:
       enabled: true
     grafana:
       image:
-        tag: 6.5.2
+        repository: grafana/grafana-dev
+        tag: explore-trace-ui-demo-361f5781fb069efc345c9efdb315f014300e6ac1
       enabled: true
       sidecar:
         datasources:
