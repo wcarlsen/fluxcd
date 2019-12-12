@@ -18,7 +18,7 @@ spec:
     grafana:
       image:
         repository: grafana/grafana-dev
-        tag: master-cd39c2bd2520766b9d4a7b37dbe57abe02240055
+        tag: master-cd39c2bd2520766b9d4a7b37dbe57abe02240055-ubuntu
       enabled: true
       sidecar:
         datasources:
