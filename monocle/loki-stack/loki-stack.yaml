@@ -18,7 +18,7 @@ spec:
     grafana:
       image:
         repository: grafana/grafana-dev
-        tag: explore-trace-ui-demo-361f5781fb069efc345c9efdb315f014300e6ac1
+        tag: master-a187500c0e6fc3d919a3dd71d85a11aae912d163-ubuntu
       enabled: true
       sidecar:
         datasources:
