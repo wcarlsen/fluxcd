@@ -37,3 +37,11 @@ metadata:
   labels:
     app: monocle
   name: monocle
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app: kafka
+  name: kafka
