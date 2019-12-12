@@ -14,3 +14,5 @@ spec:
     version: 0.20.7
   values:
     replicas: 1
+    zookeeper:
+      replicaCount: 1
