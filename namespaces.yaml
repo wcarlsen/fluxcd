@@ -45,3 +45,11 @@ metadata:
   labels:
     app: kafka
   name: kafka
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app: chaos
+  name: chaos
