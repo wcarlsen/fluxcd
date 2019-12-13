@@ -53,3 +53,11 @@ metadata:
   labels:
     app: chaos
   name: chaos
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app: db
+  name: db
