@@ -1,7 +1,6 @@
 ---
 apiVersion: apps/v1
-kind: Deployment
-metadata:
+kind: Deployment metadata:
   name: plex
   namespace: betamax
   labels:
@@ -78,7 +77,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 2Gi
+      storage: 10Gi
 
 ---
 apiVersion: v1
@@ -91,7 +90,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 35Gi
+      storage: 25Gi
 
 ---
 apiVersion: v1
@@ -104,7 +103,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 35Gi
+      storage: 25Gi
 
 # ---
 # apiVersion: v1
