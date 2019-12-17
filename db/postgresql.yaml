@@ -1,14 +1,14 @@
----
-apiVersion: helm.fluxcd.io/v1
-kind: HelmRelease
-metadata:
-  name: postgresql
-  namespace: db
-  annotations:
-    flux.weave.works/automated: "true"
-spec:
-  releaseName: postresql
-  chart:
-    repository: https://kubernetes-charts.storage.googleapis.com/
-    name: postgresql
-    version: 8.0.0
+#---
+#apiVersion: helm.fluxcd.io/v1
+#kind: HelmRelease
+#metadata:
+  #name: postgresql
+  #namespace: db
+  #annotations:
+    #flux.weave.works/automated: "true"
+#spec:
+  #releaseName: postresql
+  #chart:
+    #repository: https://kubernetes-charts.storage.googleapis.com/
+    #name: postgresql
+    #version: 8.0.0
