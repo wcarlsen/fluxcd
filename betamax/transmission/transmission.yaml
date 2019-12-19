@@ -62,7 +62,8 @@ metadata:
   name: transmission
   namespace: betamax
 spec:
-  type: ClusterIP
+  type: LoadBalancer
+  loadBalancerIP: 192.168.1.242
   selector:
     app: transmission
   ports:
