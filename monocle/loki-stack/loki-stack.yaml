@@ -13,11 +13,11 @@
      version: 0.27.1
    values:
      loki:
-       enabled: true
-       config:
-         table_manager:
-           retention_deletes_enabled: true
-           retention_period: 168h
+      enabled: true
+      config:
+        table_manager:
+          retention_deletes_enabled: true
+          retention_period: 168h
         persistence:
           enabled: true
 
