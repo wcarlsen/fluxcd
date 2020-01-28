@@ -18,6 +18,8 @@
          table_manager:
            retention_deletes_enabled: true
            retention_period: 168h
+      persistence:
+         enabled: true
      grafana:
        enabled: true
        sidecar:
@@ -28,6 +30,6 @@
        pushgateway:
          enabled: false
          server:
-           retention: "1d"
+           retention: "7d"
      promtail:
        enabled: true
