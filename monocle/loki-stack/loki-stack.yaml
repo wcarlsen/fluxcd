@@ -18,18 +18,25 @@
          table_manager:
            retention_deletes_enabled: true
            retention_period: 168h
-      persistence:
-         enabled: true
+        persistence:
+          enabled: true
+
      grafana:
        enabled: true
        sidecar:
          datasources:
            enabled: true
+        admin:
+          existingSecret: "loki-stack"
+          userKey: admin-user
+          passwordKey: admin-password
+
      prometheus:
        enabled: true
        pushgateway:
          enabled: false
          server:
            retention: "7d"
+
      promtail:
        enabled: true
