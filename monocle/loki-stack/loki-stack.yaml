@@ -10,14 +10,14 @@
    chart:
      repository: https://grafana.github.io/loki/charts
      name: loki-stack
-     version: 0.23.0
+     version: 0.27.1
    values:
      loki:
        enabled: true
        config:
          table_manager:
            retention_deletes_enabled: true
-           retention_period: 720h
+           retention_period: 168h
      grafana:
        enabled: true
        sidecar:
