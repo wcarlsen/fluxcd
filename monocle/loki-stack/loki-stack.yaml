@@ -6,13 +6,13 @@
    annotations:
      flux.weave.works/automated: "true"
  spec:
-   releaseName: loki-stack
-   chart:
-     repository: https://grafana.github.io/loki/charts
-     name: loki-stack
-     version: 0.27.1
-   values:
-     loki:
+  releaseName: loki-stack
+  chart:
+    repository: https://grafana.github.io/loki/charts
+    name: loki-stack
+    version: 0.27.1
+  values:
+    loki:
       enabled: true
       config:
         table_manager:
@@ -21,22 +21,22 @@
         persistence:
           enabled: true
 
-     grafana:
-       enabled: true
-       sidecar:
-         datasources:
-           enabled: true
+    grafana:
+      enabled: true
+        sidecar:
+          datasources:
+            enabled: true
         admin:
           existingSecret: "loki-stack"
           userKey: admin-user
           passwordKey: admin-password
 
-     prometheus:
-       enabled: true
-       pushgateway:
-         enabled: false
-         server:
-           retention: "7d"
+    prometheus:
+      enabled: true
+      pushgateway:
+        enabled: false
+        server:
+          retention: "7d"
 
-     promtail:
-       enabled: true
+    promtail:
+      enabled: true
