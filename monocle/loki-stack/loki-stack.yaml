@@ -19,7 +19,7 @@
           retention_deletes_enabled: true
           retention_period: 168h
       persistence:
-        enabled: false
+        enabled: true
         accessModes:
         - ReadWriteOnce
         size: 10Gi
