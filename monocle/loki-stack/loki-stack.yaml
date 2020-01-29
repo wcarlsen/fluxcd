@@ -20,6 +20,7 @@
           retention_period: 168h
       persistence:
         enabled: true
+        size: 10Gi
 
     grafana:
       enabled: true
@@ -30,6 +31,9 @@
         existingSecret: "loki-stack"
         userKey: admin-user
         passwordKey: admin-password
+      persistence:
+        enabled: true
+        size: 1Gi
 
     prometheus:
       enabled: true
