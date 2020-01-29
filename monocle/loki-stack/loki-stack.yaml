@@ -20,7 +20,7 @@
           retention_period: 168h
       persistence:
         enabled: true
-        size: 10Gi
+        existingClaim: "loki"
 
     grafana:
       enabled: true
@@ -44,3 +44,16 @@
 
     promtail:
       enabled: true
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: loki
+  namespace: monocle
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
