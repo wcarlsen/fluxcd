@@ -31,6 +31,14 @@
       # persistence:
       #   enabled: true
       #   size: 1Gi
+      grafana.ini:
+        auth.anonymous:
+          enabled: true
+        metrics:
+          enabled: true
+        server:
+          domain: wcarlsen.duckdns.org
+          root_url: "https://%(domain)s/grafana"
 
     prometheus:
       enabled: true
