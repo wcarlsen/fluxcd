@@ -31,21 +31,21 @@
       # persistence:
       #   enabled: true
       #   size: 1Gi
-      ingress:
-        enabled: true
-        path: /grafana
-        hosts:
-          - wcarlsen.duckdns.org
-        annotations:
-          traefik.frontend.rule.type: PathPrefixStrip
-      grafana.ini:
-        auth.anonymous:
-          enabled: true
-        metrics:
-          enabled: true
-        server:
-          domain: wcarlsen.duckdns.org
-          root_url: "https://%(domain)s/grafana"
+      # ingress:
+      #   enabled: true
+      #   path: /grafana
+      #   hosts:
+      #     - wcarlsen.duckdns.org
+      #   annotations:
+      #     traefik.frontend.rule.type: PathPrefixStrip
+      # grafana.ini:
+        # auth.anonymous:
+        #   enabled: true
+        # metrics:
+        #   enabled: true
+        # server:
+        #   domain: wcarlsen.duckdns.org
+        #   root_url: "https://%(domain)s/grafana"
 
     prometheus:
       enabled: true
@@ -72,8 +72,8 @@ spec:
     services:
     - name: loki-stack-grafana
       port: 3000
-    # middlewares:
-    # - name: traefik-auth
-    #   namespace: traefik
+    middlewares:
+    - name: grafana-stripprefix
+      namespace: traefik
   tls:
     certResolver: default
