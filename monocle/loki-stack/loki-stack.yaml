@@ -71,8 +71,8 @@ spec:
     services:
     - name: loki-stack-grafana
       port: 80
-    # middlewares:
-    # - name: grafana-stripprefix
-    #   namespace: traefik
+    middlewares:
+    - name: grafana-stripprefix
+      namespace: traefik
   tls:
     certResolver: default
