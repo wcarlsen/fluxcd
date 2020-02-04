@@ -11,6 +11,7 @@ spec:
 kind: Middleware
 metadata:
   name: grafana-stripprefix
+  namespace: traefik
 spec:
   stripPrefix:
     prefixes:
