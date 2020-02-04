@@ -56,7 +56,7 @@ spec:
     kind: Rule
     services:
     - name: loki-stack-grafana
-      port: 3000
+      port: 80
     # middlewares:
     # - name: traefik-auth
     #   namespace: traefik
