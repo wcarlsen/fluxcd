@@ -42,7 +42,7 @@
         metrics:
           enabled: true
         server:
-          root_url: "http://localhost:3000/grafana"
+          root_url: "https://wcarlsen.duckdns.org/grafana"
           serve_from_sub_path: true
 
     prometheus:
