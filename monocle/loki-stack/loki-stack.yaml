@@ -31,6 +31,13 @@
       # persistence:
       #   enabled: true
       #   size: 1Gi
+      ingress:
+        enabled: true
+        path: /grafana
+        hosts:
+          - wcarlsen.duckdns.org
+        annotations:
+          traefik.frontend.rule.type: PathPrefixStrip
       grafana.ini:
         auth.anonymous:
           enabled: true
@@ -64,7 +71,7 @@ spec:
     kind: Rule
     services:
     - name: loki-stack-grafana
-      port: 80
+      port: 3000
     # middlewares:
     # - name: traefik-auth
     #   namespace: traefik
