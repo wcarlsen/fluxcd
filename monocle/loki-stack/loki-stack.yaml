@@ -38,14 +38,14 @@
       #     - wcarlsen.duckdns.org
       #   annotations:
       #     traefik.frontend.rule.type: PathPrefixStrip
-      # grafana.ini:
-      #   auth.anonymous:
-      #     enabled: true
-      #   metrics:
-      #     enabled: true
-      #   server:
-      #     domain: wcarlsen.duckdns.org
-      #     root_url: "https://%(domain)s/grafana"
+      grafana.ini:
+        auth.anonymous:
+          enabled: true
+        metrics:
+          enabled: true
+        server:
+          domain: wcarlsen.duckdns.org
+          root_url: "https://%(domain)s/grafana"
 
     prometheus:
       enabled: true
