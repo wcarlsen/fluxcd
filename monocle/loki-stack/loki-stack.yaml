@@ -39,8 +39,6 @@
       #   annotations:
       #     traefik.frontend.rule.type: PathPrefixStrip
       grafana.ini:
-        metrics:
-          enabled: true
         server:
           domain: wcarlsen.duckdns.org
           root_url: "https://wcarlsen.duckdns.org/grafana"
