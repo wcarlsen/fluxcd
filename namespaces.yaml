@@ -38,13 +38,13 @@ metadata:
     app: monocle
   name: monocle
 
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    app: kafka
-  name: kafka
+# ---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   labels:
+#     app: kafka
+#   name: kafka
 
 ---
 apiVersion: v1
@@ -54,10 +54,10 @@ metadata:
     app: chaos
   name: chaos
 
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    app: db
-  name: db
+# ---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   labels:
+#     app: db
+#   name: db
