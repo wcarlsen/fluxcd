@@ -18,12 +18,6 @@
         table_manager:
           retention_deletes_enabled: true
           retention_period: 168h
-      persistence:
-        enabled: true
-        accessModes:
-        - ReadWriteOnce
-        size: 10Gi
-        annotations: {}
 
     grafana:
       enabled: true
@@ -37,6 +31,18 @@
       persistence:
         enabled: true
         size: 1Gi
+      metrics:
+        enabled: true
+      ingress:
+        enabled: true
+        path: /grafana
+        hosts:
+          - wcarlsen.duckdns.org
+        annotations:
+          traefik.frontend.rule.type: PathPrefixStrip
+      server:
+        domain: wcarlsen.duckdns.org
+        root_url: "https://%(domain)s/grafana"
 
     prometheus:
       enabled: true
