@@ -25,7 +25,7 @@
         datasources:
           enabled: true
       admin:
-        existingSecret: "grafana"
+        existingSecret: "loki-stack"
         userKey: admin-user
         passwordKey: admin-password
       grafana.ini:
