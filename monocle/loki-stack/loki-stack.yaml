@@ -20,7 +20,7 @@
           retention_period: 168h
 
     grafana:
-      enabled: false
+      enabled: true
       sidecar:
         datasources:
           enabled: true
