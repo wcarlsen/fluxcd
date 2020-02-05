@@ -6,13 +6,3 @@ metadata:
 spec:
   basicAuth:
     secret: traefik-users
-
----
-kind: Middleware
-metadata:
-  name: grafana-stripprefix
-  namespace: traefik
-spec:
-  stripPrefix:
-    prefixes:
-      - /grafana

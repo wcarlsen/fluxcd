@@ -14,6 +14,10 @@
   values:
     loki:
       enabled: true
+      persistence:
+        enabled: true
+        size: 8Gi
+        storageClassName: microk8s-hostpath
       config:
         table_manager:
           retention_deletes_enabled: true
@@ -59,8 +63,5 @@ spec:
     services:
     - name: loki-stack-grafana
       port: 80
-    # middlewares:
-    # - name: grafana-stripprefix
-    #   namespace: traefik
   tls:
     certResolver: default
