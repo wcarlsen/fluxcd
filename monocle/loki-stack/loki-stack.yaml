@@ -1,67 +1,67 @@
- apiVersion: helm.fluxcd.io/v1
- kind: HelmRelease
- metadata:
-   name: loki-stack
-   namespace: monocle
-   annotations:
-     flux.weave.works/automated: "true"
- spec:
-  releaseName: loki-stack
-  chart:
-    repository: https://grafana.github.io/loki/charts
-    name: loki-stack
-    version: 0.31.0
-  values:
-    loki:
-      enabled: true
-      persistence:
-        enabled: true
-        size: 8Gi
-        storageClassName: microk8s-hostpath
-      config:
-        table_manager:
-          retention_deletes_enabled: true
-          retention_period: 168h
+#  apiVersion: helm.fluxcd.io/v1
+#  kind: HelmRelease
+#  metadata:
+#    name: loki-stack
+#    namespace: monocle
+#    annotations:
+#      flux.weave.works/automated: "true"
+#  spec:
+#   releaseName: loki-stack
+#   chart:
+#     repository: https://grafana.github.io/loki/charts
+#     name: loki-stack
+#     version: 0.31.0
+#   values:
+#     loki:
+#       enabled: true
+#       persistence:
+#         enabled: true
+#         size: 8Gi
+#         storageClassName: microk8s-hostpath
+#       config:
+#         table_manager:
+#           retention_deletes_enabled: true
+#           retention_period: 168h
 
-    grafana:
-      enabled: true
-      sidecar:
-        datasources:
-          enabled: true
-      admin:
-        existingSecret: "loki-stack"
-        userKey: admin-user
-        passwordKey: admin-password
-      grafana.ini:
-        server:
-          domain: wcarlsen.duckdns.org
-          root_url: "https://wcarlsen.duckdns.org/grafana"
-          serve_from_sub_path: true
+#     grafana:
+#       enabled: true
+#       sidecar:
+#         datasources:
+#           enabled: true
+#       admin:
+#         existingSecret: "loki-stack"
+#         userKey: admin-user
+#         passwordKey: admin-password
+#       grafana.ini:
+#         server:
+#           domain: wcarlsen.duckdns.org
+#           root_url: "https://wcarlsen.duckdns.org/grafana"
+#           serve_from_sub_path: true
 
-    prometheus:
-      enabled: true
-      pushgateway:
-        enabled: false
-        server:
-          retention: "7d"
+#     prometheus:
+#       enabled: true
+#       pushgateway:
+#         enabled: false
+#         server:
+#           retention: "7d"
 
-    promtail:
-      enabled: true
+#     promtail:
+#       enabled: true
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: grafana
-  namespace: monocle
-spec:
-  entrypoints:
-  - https
-  routes:
-  - match: Host(`wcarlsen.duckdns.org`) && PathPrefix(`/grafana`)
-    kind: Rule
-    services:
-    - name: loki-stack-grafana
-      port: 80
-  tls:
-    certResolver: default
+# ---
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: grafana
+#   namespace: monocle
+# spec:
+#   entrypoints:
+#   - https
+#   routes:
+#   - match: Host(`wcarlsen.duckdns.org`) && PathPrefix(`/grafana`)
+#     kind: Rule
+#     services:
+#     - name: loki-stack-grafana
+#       port: 80
+#   tls:
+#     certResolver: default
