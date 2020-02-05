@@ -10,7 +10,7 @@
   chart:
     repository: https://grafana.github.io/loki/charts
     name: loki-stack
-    version: 0.27.1
+    version: 0.31.0
   values:
     loki:
       enabled: true
@@ -24,10 +24,10 @@
       sidecar:
         datasources:
           enabled: true
-      # admin:
-      #   existingSecret: "loki-stack"
-      #   userKey: admin-user
-      #   passwordKey: admin-password
+      admin:
+        existingSecret: "loki-stack"
+        userKey: admin-user
+        passwordKey: admin-password
       grafana.ini:
         server:
           domain: wcarlsen.duckdns.org
