@@ -19,9 +19,5 @@ spec:
     minimumAge: 1h
     metrics:
       enabled: true
-      port: 8080
-      service:
-        type: ClusterIP
-        port: 8080
-      # serviceMonitor:
-      #   enabled: true
+      servicemonitor:
+        enabled: true
