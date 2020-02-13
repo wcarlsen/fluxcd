@@ -13,11 +13,12 @@ spec:
     name: chaoskube
     version: 3.1.3
   values:
+    podAnnotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "8080"
     labels: app!=plex
     namespaces: '!kube-system,!metallb-system,!traefik'
     logFormat: 'json'
     minimumAge: 1h
     metrics:
       enabled: true
-      servicemonitor:
-        enabled: true
