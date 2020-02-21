@@ -14,9 +14,6 @@
   values:
     podAnnotations:
       prometheus.io/scrape: "true"
-      prometheus.io/port: "8080"
+      prometheus.io/port: "9115"
     targets:
-    - name: bold.dk
-      url: https://bold.dk
-      module: http_2xx
-
+    - url: https://bold.dk
