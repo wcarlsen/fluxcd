@@ -47,7 +47,7 @@
         enabled: false
         server:
           retention: "7d"
-      extraScrapeConfigs:
+      extraScrapeConfigs: |
         - job_name: 'prometheus-blackbox-exporter'
           metrics_path: /probe
           params:
