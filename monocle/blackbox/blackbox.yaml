@@ -17,4 +17,4 @@
       prometheus.io/port: "9115"
     serviceMonitor:
       targets:
-      - url: https://bold.dk
+        - url: https://bold.dk
