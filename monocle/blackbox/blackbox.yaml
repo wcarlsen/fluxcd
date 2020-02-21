@@ -15,5 +15,6 @@
     podAnnotations:
       prometheus.io/scrape: "true"
       prometheus.io/port: "9115"
-    targets:
-    - url: https://bold.dk
+    serviceMonitor:
+      targets:
+      - url: https://bold.dk
