@@ -1,5 +1,6 @@
  apiVersion: helm.fluxcd.io/v1
- kind: HelmRelease metadata:
+ kind: HelmRelease
+ metadata:
    name: loki-stack
    namespace: monocle
    annotations:
@@ -41,7 +42,7 @@
           serve_from_sub_path: true
 
     prometheus:
-      enabled: false
+      enabled: true
       pushgateway:
         enabled: false
         server:
