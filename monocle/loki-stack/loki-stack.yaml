@@ -45,8 +45,11 @@
       enabled: true
       pushgateway:
         enabled: false
-        server:
-          retention: "7d"
+      server:
+        retention: "7d"
+        extraFlags:
+          - web.enable-lifecycle
+          - storage.tsdb.wal-compression
       extraScrapeConfigs: |
         - job_name: 'prometheus-blackbox-exporter'
           metrics_path: /probe
@@ -55,7 +58,6 @@
           static_configs:
             - targets:
               - https://amager-rundt.herokuapp.com
-              - https://bold.dk
           relabel_configs:
             - source_labels: [__address__]
               target_label: __param_target
