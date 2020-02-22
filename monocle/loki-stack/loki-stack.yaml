@@ -1,6 +1,5 @@
  apiVersion: helm.fluxcd.io/v1
- kind: HelmRelease
- metadata:
+ kind: HelmRelease metadata:
    name: loki-stack
    namespace: monocle
    annotations:
@@ -55,7 +54,6 @@
           static_configs:
             - targets:
               - https://amager-rundt.herokuapp.com
-              - https://bold.dk
           relabel_configs:
             - source_labels: [__address__]
               target_label: __param_target
