@@ -36,7 +36,7 @@ spec:
           claimName: smokeping-config
       - name: data
         persistentVolumeClaim:
-          claimName: smokeping-watch
+          claimName: smokeping-data
 
 ---
 apiVersion: v1
