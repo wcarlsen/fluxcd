@@ -1,82 +1,82 @@
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: smokeping
-  namespace: monocle
-  labels:
-    app: smokeping
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: smokeping
-  template:
-    metadata:
-      labels:
-        app: smokeping
-    spec:
-      containers:
-      - name: smokeping
-        image: linuxserver/smokeping:latest
-        ports:
-        - name: web
-          containerPort: 80
-        volumeMounts:
-        - name: config
-          mountPath: "/config"
-        - name: data
-          mountPath: "/data"
-        env:
-        - name: TZ
-          value: Europe/Copenhagen
-      volumes:
-      - name: config
-        persistentVolumeClaim:
-          claimName: smokeping-config
-      - name: data
-        persistentVolumeClaim:
-          claimName: smokeping-data
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: smokeping
+#   namespace: monocle
+#   labels:
+#     app: smokeping
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: smokeping
+#   template:
+#     metadata:
+#       labels:
+#         app: smokeping
+#     spec:
+#       containers:
+#       - name: smokeping
+#         image: linuxserver/smokeping:latest
+#         ports:
+#         - name: web
+#           containerPort: 80
+#         volumeMounts:
+#         - name: config
+#           mountPath: "/config"
+#         - name: data
+#           mountPath: "/data"
+#         env:
+#         - name: TZ
+#           value: Europe/Copenhagen
+#       volumes:
+#       - name: config
+#         persistentVolumeClaim:
+#           claimName: smokeping-config
+#       - name: data
+#         persistentVolumeClaim:
+#           claimName: smokeping-data
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: smokeping-config
-  namespace: monocle
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100Mi
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: smokeping-config
+#   namespace: monocle
+# spec:
+#   accessModes:
+#   - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 100Mi
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: smokeping-data
-  namespace: monocle
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: smokeping-data
+#   namespace: monocle
+# spec:
+#   accessModes:
+#   - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 1Gi
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: smokeping
-  namespace: monocle
-spec:
-  type: LoadBalancer
-  loadBalancerIP: 192.168.1.244
-  selector:
-    app: smokeping
-  ports:
-  - name: web
-    protocol: TCP
-    port: 80
-    targetPort: web
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: smokeping
+#   namespace: monocle
+# spec:
+#   type: LoadBalancer
+#   loadBalancerIP: 192.168.1.244
+#   selector:
+#     app: smokeping
+#   ports:
+#   - name: web
+#     protocol: TCP
+#     port: 80
+#     targetPort: web
