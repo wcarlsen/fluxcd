@@ -58,6 +58,11 @@
           static_configs:
             - targets:
               - https://amager-rundt.herokuapp.com
+              - http://radarr.betamax.svc.cluster.local
+              - http://plex.betamax.svc.cluster.local
+              - http://sonarr.betamax.svc.cluster.local
+              - http://transmission.betamax.svc.cluster.local
+              - http://loki-stack-grafana
           relabel_configs:
             - source_labels: [__address__]
               target_label: __param_target
