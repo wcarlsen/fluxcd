@@ -8,7 +8,7 @@
  spec:
   releaseName: loki-stack
   forceUpgrade: true
-  resetValues: true
+  # resetValues: true
   chart:
     repository: https://grafana.github.io/loki/charts
     name: loki-stack
