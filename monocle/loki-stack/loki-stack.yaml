@@ -7,6 +7,8 @@
      flux.weave.works/automated: "true"
  spec:
   releaseName: loki-stack
+  forceUpgrade: true
+  resetValues: true
   chart:
     repository: https://grafana.github.io/loki/charts
     name: loki-stack
@@ -62,6 +64,7 @@
               - http://plex.betamax.svc.cluster.local
               - http://sonarr.betamax.svc.cluster.local
               - http://transmission.betamax.svc.cluster.local
+              - https://wcarlsen.duckdns.org/grafana
               - http://loki-stack-grafana
           relabel_configs:
             - source_labels: [__address__]
