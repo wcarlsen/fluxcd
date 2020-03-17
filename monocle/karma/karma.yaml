@@ -1,0 +1,17 @@
+ apiVersion: helm.fluxcd.io/v1
+ kind: HelmRelease
+ metadata:
+   name: karma
+   namespace: monocle
+   annotations:
+     flux.weave.works/automated: "true"
+ spec:
+  releaseName: karma
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: karma
+    version: 1.4.1
+  values:
+    env:
+    - name: ALERTMANAGER_URI
+      value: http://loki-stack-prometheus-alertmanager
