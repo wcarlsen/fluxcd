@@ -20,7 +20,9 @@ spec:
       enabled: true
       size: 1Gi
     topics:
-    - test
+    - name: test
+      partitions: 1
+      config: "cleanup.policy=compact,delete.retention.ms=604800000"
     prometheus:
       kafka:
         enabled: true
