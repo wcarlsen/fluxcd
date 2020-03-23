@@ -4,7 +4,7 @@ metadata:
   name: goldpinger
   namespace: monocle
   annotations:
-    flux.weave.works/automated: "true"
+    #flux.weave.works/automated: "true"
 spec:
   releaseName: goldpinger
   chart:
