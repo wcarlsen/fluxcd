@@ -1,18 +1,28 @@
-#---
-#apiVersion: helm.fluxcd.io/v1
-#kind: HelmRelease
-#metadata:
-  #name: kafka
-  #namespace: kafka
-  #annotations:
-    #flux.weave.works/automated: "true"
-#spec:
-  #releaseName: kafka
-  #chart:
-    #repository: http://storage.googleapis.com/kubernetes-charts-incubator
-    #name: kafka
-    #version: 0.20.7
-  #values:
-    #replicas: 1
-    #zookeeper:
-      #replicaCount: 1
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: kafka
+  namespace: kafka
+  annotations:
+    flux.weave.works/automated: "true"
+spec:
+  releaseName: kafka
+  chart:
+    repository: http://storage.googleapis.com/kubernetes-charts-incubator
+    name: kafka
+    version: 0.20.8
+  values:
+    replicas: 1
+    zookeeper:
+      replicaCount: 1
+    persitence:
+      enabled: true
+      size: 1Gi
+    topics:
+    - test
+    prometheus:
+      kafka:
+        enabled: true
+
+
