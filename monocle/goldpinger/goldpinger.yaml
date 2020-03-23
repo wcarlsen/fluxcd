@@ -11,3 +11,8 @@ spec:
     repository: https://kubernetes-charts.storage.googleapis.com/
     version: 2.0.1
     name: goldpinger
+  values:
+    service:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "80"
