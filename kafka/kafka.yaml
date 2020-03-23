@@ -16,7 +16,7 @@ spec:
     replicas: 1
     zookeeper:
       replicaCount: 1
-    persitence:
+    persistence:
       enabled: true
       size: 1Gi
     topics:
