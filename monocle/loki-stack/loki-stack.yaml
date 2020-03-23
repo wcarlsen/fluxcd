@@ -30,9 +30,9 @@
       sidecar:
         datasources:
           enabled: true
-      persistence:
-        enabled: true
-        size: 2Gi
+      #persistence:
+        #enabled: true
+        #size: 2Gi
       admin:
         existingSecret: "loki-stack"
         userKey: admin-user
