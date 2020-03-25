@@ -13,10 +13,10 @@ spec:
     name: influxdb
   values:
     persistence:
-        size: 4Gi
+      size: 4Gi
     config:
-        retention:
-            enabled: true
+      retention:
+          enabled: true
     service:
       annotations:
         prometheus.io/scrape: "true"
