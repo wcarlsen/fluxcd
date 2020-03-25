@@ -1,20 +1,20 @@
-# apiVersion: helm.fluxcd.io/v1
-# kind: HelmRelease
-# metadata:
-#   name: kube-state-metrics
-#   namespace: monocle
-#   annotations:
-#     flux.weave.works/automated: "true"
-# spec:
-#   releaseName: kube-state-metrics
-#   chart:
-#     repository: https://kubernetes-charts.storage.googleapis.com/
-#     version: 2.8.2
-#     name: kube-state-metrics
-#   values:
-#     image:
-#         tag: master
-#     service:
-#       annotations:
-#         prometheus.io/scrape: "true"
-#         prometheus.io/port: "8080"
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: kube-state-metrics
+  namespace: monocle
+  annotations:
+    flux.weave.works/automated: "true"
+spec:
+  releaseName: kube-state-metrics
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    version: 2.8.2
+    name: kube-state-metrics
+  values:
+    image:
+        tag: master
+    service:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
