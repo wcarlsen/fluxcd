@@ -56,9 +56,9 @@
           enabled: false
           size: 2Gi
         remoteWrite:
-          - url: http://influxdb/api/v1/prom/write
+          - url: http://influxdb:8086/api/v1/prom/write
         remoteRead:
-          - url: http://influxdb/api/v1/prom/read
+          - url: http://influxdb:8086/api/v1/prom/read
             
       extraScrapeConfigs: |
         - job_name: 'prometheus-blackbox-exporter'

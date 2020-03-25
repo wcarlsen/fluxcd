@@ -17,7 +17,7 @@ spec:
     config:
         retention:
             enabled: true
-    # service:
-    #   annotations:
-    #     prometheus.io/scrape: "true"
-    #     prometheus.io/port: "8080"
+    service:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
