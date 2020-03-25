@@ -27,5 +27,5 @@ spec:
       enabled: true
       scripts:
         init.iql: |+
-          CREATE DATABASE "prometheus" WITH DURATION 7d
+          CREATE DATABASE "prometheus" WITH DURATION 7d REPLICATION 1
         
