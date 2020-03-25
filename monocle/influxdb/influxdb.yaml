@@ -21,3 +21,9 @@ spec:
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "8080"
+    initScripts:
+        enabled: true
+        scripts:
+          init.iql: |+
+            CREATE DATABASE "prometheus"
+          
