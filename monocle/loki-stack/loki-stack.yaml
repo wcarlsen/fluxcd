@@ -52,9 +52,14 @@
         extraFlags:
           - web.enable-lifecycle
           - storage.tsdb.wal-compression
-        # persistentVolume:
-        #   enabled: false
-        #   size: 2Gi
+        persistentVolume:
+          enabled: false
+          size: 2Gi
+        remoteWrite:
+          - url: http://influxdb/api/v1/prom/write
+        remoteRead:
+          - url: http://influxdb/api/v1/prom/read
+            
       extraScrapeConfigs: |
         - job_name: 'prometheus-blackbox-exporter'
           metrics_path: /probe
