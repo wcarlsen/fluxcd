@@ -13,7 +13,7 @@ spec:
     name: kube-state-metrics
   values:
     image:
-        tag: master
+        tag: latest
     service:
       annotations:
         prometheus.io/scrape: "true"
