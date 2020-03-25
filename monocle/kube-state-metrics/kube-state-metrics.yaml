@@ -1,18 +1,20 @@
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
-  name: goldpinger
+  name: kube-state-metrics
   namespace: monocle
   annotations:
     flux.weave.works/automated: "true"
 spec:
-  releaseName: goldpinger
+  releaseName: kube-state-metrics
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     version: 2.0.1
-    name: goldpinger
+    name: kube-state-metrics
   values:
+    image:
+        tag: master
     service:
       annotations:
         prometheus.io/scrape: "true"
-        prometheus.io/port: "80"
+        prometheus.io/port: "8080"

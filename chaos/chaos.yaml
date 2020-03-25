@@ -17,7 +17,7 @@ spec:
       prometheus.io/scrape: "true"
       prometheus.io/port: "8080"
     labels: app!=plex
-    namespaces: '!kube-system,!metallb-system,!traefik'
+    namespaces: '!kube-system,!metallb-system,!traefik,!kafka'
     logFormat: 'json'
     minimumAge: 1h
     metrics:
