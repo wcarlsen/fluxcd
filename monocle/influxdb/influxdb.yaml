@@ -17,12 +17,13 @@ spec:
     config:
       retention:
         enabled: true
+        check-interval: "30m0s"
       http:
-        write-tace: true
+        write-tace: false
     service:
       annotations:
         prometheus.io/scrape: "true"
-        prometheus.io/port: "8080"
+        prometheus.io/port: "8086"
     initScripts:
       enabled: true
       scripts:
