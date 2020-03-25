@@ -16,7 +16,9 @@ spec:
       size: 4Gi
     config:
       retention:
-          enabled: true
+        enabled: true
+      http:
+        write-tace: true
     service:
       annotations:
         prometheus.io/scrape: "true"
