@@ -20,11 +20,12 @@ spec:
       enabled: true
       size: 1Gi
     topics:
-    - name: test
+    - name: dev
       partitions: 1
+      config: "cleanup.policy=compact,delete.retention.ms=86400000"
+    - name: prod
+      partitinos: 1
       config: "cleanup.policy=compact,delete.retention.ms=604800000"
     prometheus:
       kafka:
         enabled: true
-
-

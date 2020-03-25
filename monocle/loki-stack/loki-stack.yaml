@@ -34,7 +34,7 @@
         #enabled: true
         #size: 2Gi
       admin:
-        existingSecret: "loki-stack"
+        existingSecret: "loki-stack-grafana"
         userKey: admin-user
         passwordKey: admin-password
       grafana.ini:
@@ -52,6 +52,9 @@
         extraFlags:
           - web.enable-lifecycle
           - storage.tsdb.wal-compression
+        # persistentVolume:
+        #   enabled: false
+        #   size: 2Gi
       extraScrapeConfigs: |
         - job_name: 'prometheus-blackbox-exporter'
           metrics_path: /probe
@@ -59,7 +62,6 @@
             module: [http_2xx]
           static_configs:
             - targets:
-              - https://amager-rundt.herokuapp.com
               - https://wcarlsen.duckdns.org/sonarr
               - https://wcarlsen.duckdns.org/radarr
               - https://wcarlsen.duckdns.org/grafana
@@ -70,7 +72,6 @@
               target_label: instance
             - target_label: __address__
               replacement: prometheus-blackbox-exporter:9115
-
     promtail:
       enabled: true
 
