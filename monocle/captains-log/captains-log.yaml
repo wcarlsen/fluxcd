@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: captains-log
-        image: wcarlse/captains-log:1.0
+        image: wcarlsen/captains-log:1.0
         ports:
         - name: web
           containerPort: 8080
