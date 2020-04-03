@@ -58,7 +58,7 @@
         remoteWrite:
           url: "http://influxdb:8086/api/v1/prom/write?db=prometheus"
         remoteRead:
-          url: "http://influxdb:8086/api/v1/prom/read?db=prometheus"       
+          url: "http://influxdb:8086/api/v1/prom/read?db=prometheus"
       extraScrapeConfigs: |
         - job_name: 'prometheus-blackbox-exporter'
           metrics_path: /probe
@@ -76,6 +76,7 @@
               target_label: instance
             - target_label: __address__
               replacement: prometheus-blackbox-exporter:9115
+
     promtail:
       enabled: true
 
