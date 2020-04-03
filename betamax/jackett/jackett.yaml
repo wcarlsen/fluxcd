@@ -66,24 +66,3 @@ spec:
   resources:
     requests:
       storage: 100Mi
-
----
-  apiVersion: traefik.containo.us/v1alpha1
-  kind: IngressRoute
-  metadata:
-    name: jackett
-    namespace: betamax
-  spec:
-    entrypoints:
-    - https
-    routes:
-    - match: Host(`wcarlsen.duckdns.org`) && PathPrefix(`/jackett`)
-      kind: Rule
-      services:
-      - name: jackett
-        port: 9117
-      middlewares:
-      - name: traefik-auth
-        namespace: traefik
-    tls:
-      certResolver: default
