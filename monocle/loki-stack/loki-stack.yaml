@@ -59,6 +59,9 @@
           url: "http://influxdb:8086/api/v1/prom/write?db=prometheus"
         remoteRead:
           url: "http://influxdb:8086/api/v1/prom/read?db=prometheus"
+        service:
+          type: LoadBalancer
+          loadBalancerIP: 192.168.1.248
       extraScrapeConfigs: |
         - job_name: 'prometheus-blackbox-exporter'
           metrics_path: /probe
@@ -76,6 +79,11 @@
               target_label: instance
             - target_label: __address__
               replacement: prometheus-blackbox-exporter:9115
+
+      alertmanager:
+        service:
+          type: LoadBalancer
+          loadBalancerIP: 192.168.1.247
 
     promtail:
       enabled: true
@@ -97,39 +105,3 @@ spec:
       port: 80
   tls:
     certResolver: default
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: alertmanager
-  namespace: monocle
-spec:
-  type: LoadBalancer
-  loadBalancerIP: 192.168.1.247
-  selector:
-    component: alertmanager
-    app: prometheus
-  ports:
-  - name: web
-    protocol: TCP
-    port: 9093
-    targetPort: web
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: prometheus
-  namespace: monocle
-spec:
-  type: LoadBalancer
-  loadBalancerIP: 192.168.1.248
-  selector:
-    component: server
-    app: prometheus
-  ports:
-  - name: web
-    protocol: TCP
-    port: 9090
-    targetPort: web
