@@ -110,8 +110,9 @@ spec:
   selector:
     component: alertmanager
     app: prometheus
+    release: loki-stack
   ports:
   - name: http
     protocol: TCP
-    port: 80
+    port: 9093
     targetPort: http
