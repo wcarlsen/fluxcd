@@ -21,7 +21,7 @@ spec:
           image: linuxserver/heimdall:latest
           ports:
           - name: web
-            containerPort: 443
+            containerPort: 80
           volumeMounts:
           - name: config
             mountPath: "/config"
@@ -47,7 +47,7 @@ spec:
   ports:
   - name: web
     protocol: TCP
-    port: 443
+    port: 80
     targetPort: web
 
 ---
