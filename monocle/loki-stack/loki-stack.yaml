@@ -102,7 +102,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: alertmanager
+  name: alertmanager-local
   namespace: monocle
 spec:
   type: LoadBalancer
@@ -121,7 +121,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: prometheus
+  name: prometheus-local
   namespace: monocle
 spec:
   type: LoadBalancer
