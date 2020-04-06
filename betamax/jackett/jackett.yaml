@@ -45,7 +45,8 @@ metadata:
   name: jackett
   namespace: betamax
 spec:
-  type: ClusterIP
+  type: LoadBalancer
+  loadBalancerIP: 192.168.1.245
   selector:
     app: jackett
   ports:
