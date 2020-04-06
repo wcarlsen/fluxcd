@@ -115,4 +115,4 @@ spec:
   - name: http
     protocol: TCP
     port: 9093
-    targetPort: http
+    targetPort: 9093
