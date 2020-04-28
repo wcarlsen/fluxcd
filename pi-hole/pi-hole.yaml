@@ -1,0 +1,66 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pi-hole
+  namespace: pi-hole
+  labels:
+    app: pi-hole
+  annotations:
+    fluxcd.io/ignore: true
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pi-hole
+  template:
+    metadata:
+      labels:
+        app: pi-hole
+    spec:
+      containers:
+      - name: pi-hole
+        image: pihole/pihole:latest
+        ports:
+        - name: 53tcp
+          protocol: tcp
+          containerPort: 53
+        - name: 53udp
+          protocol: udp
+          containerPort: 53
+        - name: 67udp
+          protocol: udp
+          containerPort: 67
+        - name: 80udp
+          protocol: udp
+          containerPort: 80
+        - name: 443tcp
+          protocol: tcp
+          containerPort: 443
+        volumeMounts:
+        - name: config
+          mountPath: "/config"
+        - name: tvseries
+          mountPath: "/tvseries"
+        - name: movies
+          mountPath: "/movies"
+        # - name: transcoding
+        #   mountPath: "/transcoding"
+        env:
+        - name: VERSION
+          value: docker
+        - name: UMASK_SET
+          value: "022"
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: plex-config
+      - name: tvseries
+        persistentVolumeClaim:
+          claimName: plex-tvseries
+      - name: movies
+        persistentVolumeClaim:
+          claimName: plex-movies
+      # - name: transcoding
+      #   persistentVolumeClaim:
+      #     claimName: plex-transcoding

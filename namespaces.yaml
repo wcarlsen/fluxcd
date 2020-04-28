@@ -62,10 +62,20 @@ metadata:
     app: heimdall
   name: heimdall
 
-# ---
-# apiVersion: v1
-# kind: Namespace
-# metadata:
-#   labels:
-#     app: db
-#   name: db
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app: db
+   annotations:
+     fluxcd.io/ignore: true
+  name: db
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app: pi-hole
+  name: pi-hole
