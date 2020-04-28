@@ -27,7 +27,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   labels:
-    app: metallb
+    name: metallb
   name: metallb-system
 
 ---
@@ -35,7 +35,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   labels:
-    app: monocle
+    name: monocle
   name: monocle
 
 ---
@@ -43,7 +43,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   labels:
-    app: kafka
+    name: kafka
   name: kafka
 
 ---
@@ -51,7 +51,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   labels:
-    app: chaos
+    name: chaos
   name: chaos
 
 ---
@@ -59,7 +59,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   labels:
-    app: heimdall
+    name: heimdall
   name: heimdall
 
 ---
@@ -67,9 +67,9 @@ apiVersion: v1
 kind: Namespace
 metadata:
   labels:
-    app: db
-   annotations:
-     fluxcd.io/ignore: true
+    name: db
+  annotations:
+    fluxcd.io/ignore: true
   name: db
 
 ---
@@ -77,5 +77,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   labels:
-    app: pi-hole
+    name: pi-hole
+  annotations:
+    fluxcd.io/ignore: true
   name: pi-hole
