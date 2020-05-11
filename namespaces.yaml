@@ -72,12 +72,12 @@ metadata:
     fluxcd.io/ignore: true
   name: db
 
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    name: pi-hole
-  annotations:
-    fluxcd.io/ignore: true
-  name: pi-hole
+# ---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   labels:
+#     name: pi-hole
+#   annotations:
+#     fluxcd.io/ignore: true
+#   name: pi-hole

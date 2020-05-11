@@ -33,7 +33,7 @@ helm upgrade -i flux --wait \
 --set registry.pollInterval=1m \
 --set git.pollInterval=1m \
 --set git.url=git@github.com:YOURGITHUBUSER/REPO \
---set additionalArgs={--sync-garbage-collection} \ # comment this line if you do not want flux to delete resources
+--set additionalArgs={--sync-garbage-collection,--connect=ws://fluxcloud} \ # comment this line if you do not want flux to delete resources
 --namespace flux \
 fluxcd/flux
 
