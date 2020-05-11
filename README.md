@@ -29,13 +29,13 @@ helm repo add fluxcd https://charts.fluxcd.io
 kubectl apply -f https://raw.githubusercontent.com/fluxcd/flux/helm-0.10.1/deploy-helm/flux-helm-release-crd.yaml
 
 # Install flux
-helm upgrade -i flux --wait \
+helm upgrade -i flux fluxcd/flux --wait \
+--namespace flux \
 --set registry.pollInterval=1m \
 --set git.pollInterval=1m \
---set git.url=git@github.com:YOURGITHUBUSER/REPO \
---set additionalArgs={--sync-garbage-collection,--connect=ws://fluxcloud} \ # comment this line if you do not want flux to delete resources
---namespace flux \
-fluxcd/flux
+--set git.url=git@github.com:wcarlsen/fluxcd \
+--set syncGarbageCollection.enabled=true \
+--set additionalArgs={--connect=ws://fluxcloud}
 
 # Get flux ssh key and add it to your github repo with allow write access
 fluxctl identity --k8s-fwd-ns flux
