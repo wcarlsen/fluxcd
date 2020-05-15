@@ -9,7 +9,7 @@ spec:
   releaseName: goldpinger
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
-    version: 2.0.1
+    version: 2.0.2
     name: goldpinger
   values:
     service:
