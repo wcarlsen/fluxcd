@@ -1,139 +1,139 @@
-#  apiVersion: helm.fluxcd.io/v1
-#  kind: HelmRelease
-#  metadata:
-#    name: loki-stack
-#    namespace: monocle
-#    annotations:
-#      flux.weave.works/automated: "true"
-#  spec:
-#   releaseName: loki-stack
-#   forceUpgrade: true
-#   # resetValues: true
-#   chart:
-#     repository: https://grafana.github.io/loki/charts
-#     name: loki-stack
-#     version: 0.32.0
-#   values:
-#     loki:
-#       enabled: true
-#       persistence:
-#         enabled: true
-#         size: 8Gi
-#         storageClassName: microk8s-hostpath
-#       config:
-#         table_manager:
-#           retention_deletes_enabled: true
-#           retention_period: 168h
+ apiVersion: helm.fluxcd.io/v1
+ kind: HelmRelease
+ metadata:
+   name: loki-stack
+   namespace: monocle
+   annotations:
+     flux.weave.works/automated: "true"
+ spec:
+  releaseName: loki-stack
+  forceUpgrade: true
+  # resetValues: true
+  chart:
+    repository: https://grafana.github.io/loki/charts
+    name: loki-stack
+    version: 0.32.0
+  values:
+    loki:
+      enabled: true
+      persistence:
+        enabled: true
+        size: 8Gi
+        storageClassName: microk8s-hostpath
+      config:
+        table_manager:
+          retention_deletes_enabled: true
+          retention_period: 168h
 
-#     grafana:
-#       image:
-#         tag: 7.0.0-beta3
-#       enabled: true
-#       sidecar:
-#         datasources:
-#           enabled: true
-#       persistence:
-#         enabled: true
-#         size: 2Gi
-#       admin:
-#         existingSecret: "loki-stack-grafana"
-#         userKey: admin-user
-#         passwordKey: admin-password
-#       grafana.ini:
-#         server:
-#           domain: wcarlsen.duckdns.org
-#           root_url: "https://wcarlsen.duckdns.org/grafana"
-#           serve_from_sub_path: true
+    grafana:
+      image:
+        tag: 7.0.0-beta3
+      enabled: true
+      sidecar:
+        datasources:
+          enabled: true
+      persistence:
+        enabled: true
+        size: 2Gi
+      admin:
+        existingSecret: "loki-stack-grafana"
+        userKey: admin-user
+        passwordKey: admin-password
+      grafana.ini:
+        server:
+          domain: wcarlsen.duckdns.org
+          root_url: "https://wcarlsen.duckdns.org/grafana"
+          serve_from_sub_path: true
 
-#     prometheus:
-#       enabled: true
-#       pushgateway:
-#         enabled: false
-#       server:
-#         retention: "7d"
-#         extraFlags:
-#           - web.enable-lifecycle
-#           - storage.tsdb.wal-compression
-#         persistentVolume:
-#           enabled: false
-#           size: 2Gi
-#         remoteWrite:
-#           url: "http://influxdb:8086/api/v1/prom/write?db=prometheus"
-#         remoteRead:
-#           url: "http://influxdb:8086/api/v1/prom/read?db=prometheus"
-#       extraScrapeConfigs: |
-#         - job_name: 'prometheus-blackbox-exporter'
-#           metrics_path: /probe
-#           params:
-#             module: [http_2xx]
-#           static_configs:
-#             - targets:
-#               - https://wcarlsen.duckdns.org/sonarr
-#               - https://wcarlsen.duckdns.org/radarr
-#               - https://wcarlsen.duckdns.org/grafana
-#           relabel_configs:
-#             - source_labels: [__address__]
-#               target_label: __param_target
-#             - source_labels: [__param_target]
-#               target_label: instance
-#             - target_label: __address__
-#               replacement: prometheus-blackbox-exporter:9115
+    prometheus:
+      enabled: true
+      pushgateway:
+        enabled: false
+      server:
+        retention: "7d"
+        extraFlags:
+          - web.enable-lifecycle
+          - storage.tsdb.wal-compression
+        persistentVolume:
+          enabled: false
+          size: 2Gi
+        remoteWrite:
+          url: "http://influxdb:8086/api/v1/prom/write?db=prometheus"
+        remoteRead:
+          url: "http://influxdb:8086/api/v1/prom/read?db=prometheus"
+      extraScrapeConfigs: |
+        - job_name: 'prometheus-blackbox-exporter'
+          metrics_path: /probe
+          params:
+            module: [http_2xx]
+          static_configs:
+            - targets:
+              - https://wcarlsen.duckdns.org/sonarr
+              - https://wcarlsen.duckdns.org/radarr
+              - https://wcarlsen.duckdns.org/grafana
+          relabel_configs:
+            - source_labels: [__address__]
+              target_label: __param_target
+            - source_labels: [__param_target]
+              target_label: instance
+            - target_label: __address__
+              replacement: prometheus-blackbox-exporter:9115
 
-#     promtail:
-#       enabled: true
+    promtail:
+      enabled: true
 
-# ---
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: IngressRoute
-# metadata:
-#   name: grafana
-#   namespace: monocle
-# spec:
-#   entrypoints:
-#   - https
-#   routes:
-#   - match: Host(`wcarlsen.duckdns.org`) && PathPrefix(`/grafana`)
-#     kind: Rule
-#     services:
-#     - name: loki-stack-grafana
-#       port: 80
-#   tls:
-#     certResolver: default
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana
+  namespace: monocle
+spec:
+  entrypoints:
+  - https
+  routes:
+  - match: Host(`wcarlsen.duckdns.org`) && PathPrefix(`/grafana`)
+    kind: Rule
+    services:
+    - name: loki-stack-grafana
+      port: 80
+  tls:
+    certResolver: default
 
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: alertmanager-local
-#   namespace: monocle
-# spec:
-#   type: LoadBalancer
-#   loadBalancerIP: 192.168.1.247
-#   selector:
-#     component: alertmanager
-#     app: prometheus
-#     release: loki-stack
-#   ports:
-#   - name: http
-#     protocol: TCP
-#     port: 9093
-#     targetPort: 9093
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: alertmanager-local
+  namespace: monocle
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.1.247
+  selector:
+    component: alertmanager
+    app: prometheus
+    release: loki-stack
+  ports:
+  - name: http
+    protocol: TCP
+    port: 9093
+    targetPort: 9093
 
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: prometheus-local
-#   namespace: monocle
-# spec:
-#   type: LoadBalancer
-#   loadBalancerIP: 192.168.1.248
-#   selector:
-#     component: server
-#     app: prometheus
-#     release: loki-stack
-#   ports:
-#   - name: http
-#     protocol: TCP
-#     port: 9090
-#     targetPort: 9090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-local
+  namespace: monocle
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.1.248
+  selector:
+    component: server
+    app: prometheus
+    release: loki-stack
+  ports:
+  - name: http
+    protocol: TCP
+    port: 9090
+    targetPort: 9090
