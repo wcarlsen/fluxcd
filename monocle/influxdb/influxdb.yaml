@@ -10,7 +10,7 @@ spec:
   forceUpgrade: true
   resetValues: true
   chart:
-    repository: https://helm.influxdata.com/
+    repository: https://influxdata.github.io/helm-charts
     version: 4.4.3
     name: influxdb
   values:
