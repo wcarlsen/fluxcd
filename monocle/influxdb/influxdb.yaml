@@ -19,7 +19,7 @@ spec:
         enabled: true
         check-interval: "30m0s"
       http:
-        write-tace: false
+        write-tace: true
     service:
       annotations:
         prometheus.io/scrape: "true"
