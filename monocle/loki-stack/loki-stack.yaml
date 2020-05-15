@@ -26,6 +26,8 @@
           retention_period: 168h
 
     grafana:
+      image:
+        tag: 7.0.0-beta3
       enabled: true
       sidecar:
         datasources:
