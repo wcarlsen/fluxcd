@@ -21,8 +21,12 @@ spec:
       size: 1Gi
     external:
       enabled: true
-      type: LoadBalancer
-      loadBalancerIP: 192.168.1.249
+      type: NodePort
+    configurationOverrides:
+      "advertised.listeners": |-
+        EXTERNAL://kafka.cluster.local:$((31090 + ${KAFKA_BROKER_ID}))
+      "listener.security.protocol.map": |-
+        PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
     topics:
     - name: dev
       partitions: 1
