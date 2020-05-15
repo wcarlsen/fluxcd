@@ -1,32 +1,32 @@
----
-apiVersion: helm.fluxcd.io/v1
-kind: HelmRelease
-metadata:
-  name: kafka
-  namespace: kafka
-  annotations:
-    flux.weave.works/automated: "true"
-    fluxcd.io/ignore: true
-spec:
-  releaseName: kafka
-  chart:
-    repository: http://storage.googleapis.com/kubernetes-charts-incubator
-    name: kafka
-    version: 0.20.8
-  values:
-    replicas: 1
-    zookeeper:
-      replicaCount: 1
-    persistence:
-      enabled: true
-      size: 1Gi
-    topics:
-    - name: dev
-      partitions: 1
-      config: "cleanup.policy=compact,delete.retention.ms=86400000"
-    - name: prod
-      partitinos: 1
-      config: "cleanup.policy=compact,delete.retention.ms=604800000"
-    prometheus:
-      kafka:
-        enabled: true
+#---
+#apiVersion: helm.fluxcd.io/v1
+#kind: HelmRelease
+#metadata:
+  #name: kafka
+  #namespace: kafka
+  #annotations:
+    #flux.weave.works/automated: "true"
+    #fluxcd.io/ignore: true
+#spec:
+  #releaseName: kafka
+  #chart:
+    #repository: http://storage.googleapis.com/kubernetes-charts-incubator
+    #name: kafka
+    #version: 0.20.8
+  #values:
+    #replicas: 1
+    #zookeeper:
+      #replicaCount: 1
+    #persistence:
+      #enabled: true
+      #size: 1Gi
+    #topics:
+    #- name: dev
+      #partitions: 1
+      #config: "cleanup.policy=compact,delete.retention.ms=86400000"
+    #- name: prod
+      #partitinos: 1
+      #config: "cleanup.policy=compact,delete.retention.ms=604800000"
+    #prometheus:
+      #kafka:
+        #enabled: true
