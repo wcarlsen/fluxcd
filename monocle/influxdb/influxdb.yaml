@@ -11,7 +11,7 @@ spec:
   resetValues: true
   chart:
     repository: https://influxdata.github.io/helm-charts
-    version: 4.4.3
+    version: 4.4.8
     name: influxdb
   values:
     persistence:
