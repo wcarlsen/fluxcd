@@ -21,6 +21,8 @@ spec:
       size: 1Gi
     external:
       enabled: true
+      type: LoadBalancer
+      loadBalancerIP: 192.168.1.249
     topics:
     - name: dev
       partitions: 1
