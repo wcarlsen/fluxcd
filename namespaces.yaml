@@ -44,6 +44,8 @@ kind: Namespace
 metadata:
   labels:
     name: kafka
+  annotations:
+    fluxcd.io/ignore: true
   name: kafka
 
 ---
