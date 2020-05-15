@@ -7,6 +7,8 @@ metadata:
     flux.weave.works/automated: "true"
 spec:
   releaseName: influxdb
+  forceUpgrade: true
+  resetValues: true
   chart:
     repository: https://helm.influxdata.com/
     version: 4.4.3
