@@ -2,7 +2,8 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  labels: name: betamax
+  labels:
+    name: betamax
   name: betamax
 
 ---
