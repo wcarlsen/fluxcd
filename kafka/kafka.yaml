@@ -31,12 +31,11 @@ spec:
         enabled: true
     external:
       enabled: true
-      domain: wcarlsen.duckdns.org
       type: NodePort #redundant, because default, added for clarity
       dns:
         useExternal: true  ## also redundant, added to clarify we are using dns-based access
     configurationOverrides:
       "advertised.listeners": |-
-        EXTERNAL://kafka.mydomain.com:$((31090 + ${KAFKA_BROKER_ID}))
+        EXTERNAL://kafka.cluster.local:$((31090 + ${KAFKA_BROKER_ID}))
       "listener.security.protocol.map": |-
         PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
