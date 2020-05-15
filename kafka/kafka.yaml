@@ -19,6 +19,8 @@ spec:
     persistence:
       enabled: true
       size: 1Gi
+    external:
+      enabled: true
     topics:
     - name: dev
       partitions: 1
