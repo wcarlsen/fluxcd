@@ -57,10 +57,10 @@
         persistentVolume:
           enabled: false
           size: 2Gi
-        remoteWrite:
-          url: "http://influxdb:8086/api/v1/prom/write?db=prometheus"
-        remoteRead:
-          url: "http://influxdb:8086/api/v1/prom/read?db=prometheus"
+        # remoteWrite:
+        #   url: "http://influxdb:8086/api/v1/prom/write?db=prometheus"
+        # remoteRead:
+        #   url: "http://influxdb:8086/api/v1/prom/read?db=prometheus"
       extraScrapeConfigs: |
         - job_name: 'prometheus-blackbox-exporter'
           metrics_path: /probe
