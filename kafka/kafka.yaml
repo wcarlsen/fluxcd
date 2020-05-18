@@ -19,13 +19,13 @@ spec:
     persistence:
       enabled: true
       size: 1Gi
-    #topics:
-    #- name: dev
-      #partitions: 1
-      #config: "cleanup.policy=compact,delete.retention.ms=86400000"
-    #- name: prod
-      #partitinos: 1
-      #config: "cleanup.policy=compact,delete.retention.ms=604800000"
+    topics:
+    - name: dev
+      partitions: 1
+      config: "cleanup.policy=compact,delete.retention.ms=86400000"
+    - name: prod
+      partitinos: 1
+      config: "cleanup.policy=compact,delete.retention.ms=604800000"
     prometheus:
       kafka:
         enabled: true
