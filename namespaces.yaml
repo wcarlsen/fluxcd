@@ -38,15 +38,13 @@ metadata:
     name: monocle
   name: monocle
 
-#---
-#apiVersion: v1
-#kind: Namespace
-#metadata:
-  #labels:
-    #name: kafka
-  #annotations:
-    #fluxcd.io/ignore: true
-  #name: kafka
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    name: kafka
+  name: kafka
 
 ---
 apiVersion: v1

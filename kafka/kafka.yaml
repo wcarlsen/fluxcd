@@ -6,7 +6,6 @@ metadata:
   namespace: kafka
   annotations:
     flux.weave.works/automated: "true"
-    fluxcd.io/ignore: true
 spec:
   releaseName: kafka
   chart:
