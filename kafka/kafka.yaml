@@ -23,9 +23,15 @@ spec:
     - name: dev
       partitions: 1
       config: "cleanup.policy=compact,delete.retention.ms=86400000"
+      acls:
+        - user: all
+          operations: [ All ]
     - name: prod
       partitinos: 1
       config: "cleanup.policy=compact,delete.retention.ms=604800000"
+      acls:
+        - user: all
+          operations: [ All ]
     prometheus:
       kafka:
         enabled: true
