@@ -23,12 +23,14 @@ spec:
     - name: dev
       partitions: 1
       config: "cleanup.policy=compact,delete.retention.ms=86400000"
+      reassignPartitions: true
       acls:
         - user: all
           operations: [ All ]
     - name: prod
       partitinos: 1
       config: "cleanup.policy=compact,delete.retention.ms=604800000"
+      reassignPartitions: true
       acls:
         - user: all
           operations: [ All ]
