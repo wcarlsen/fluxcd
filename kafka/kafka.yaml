@@ -11,7 +11,7 @@ spec:
   chart:
     repository: http://storage.googleapis.com/kubernetes-charts-incubator
     name: kafka
-    version: 0.20.8
+    version: 0.21.2
   values:
     replicas: 1
     zookeeper:
@@ -19,13 +19,13 @@ spec:
     persistence:
       enabled: true
       size: 1Gi
-    topics:
-    - name: dev
-      partitions: 1
-      config: "cleanup.policy=compact,delete.retention.ms=86400000"
-    - name: prod
-      partitinos: 1
-      config: "cleanup.policy=compact,delete.retention.ms=604800000"
+    #topics:
+    #- name: dev
+      #partitions: 1
+      #config: "cleanup.policy=compact,delete.retention.ms=86400000"
+    #- name: prod
+      #partitinos: 1
+      #config: "cleanup.policy=compact,delete.retention.ms=604800000"
     prometheus:
       kafka:
         enabled: true
