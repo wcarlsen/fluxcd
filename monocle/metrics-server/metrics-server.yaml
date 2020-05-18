@@ -11,3 +11,4 @@ spec:
     repository: https://kubernetes-charts.storage.googleapis.com/
     version: 2.11.1
     name: metrics-server
+  values:
