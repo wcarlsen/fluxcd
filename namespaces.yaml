@@ -70,6 +70,4 @@ kind: Namespace
 metadata:
   labels:
     name: pihole
-  annotations:
-    fluxcd.io/ignore: true
   name: pihole

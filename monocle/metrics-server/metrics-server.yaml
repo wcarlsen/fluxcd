@@ -1,0 +1,13 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: metrics-server
+  namespace: monocle
+  annotations:
+    flux.weave.works/automated: "true"
+spec:
+  releaseName: metrics-server
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    version: 2.11.1
+    name: metrics-server
