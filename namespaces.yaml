@@ -71,11 +71,3 @@ metadata:
   labels:
     name: pihole
   name: pihole
-
----
-apiVersion: v1
-kind: namespace
-metadata:
-  labels:
-    name: private
-  name: private
