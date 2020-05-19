@@ -65,9 +65,17 @@ metadata:
   name: db
 
 ---
-apiVersion: v1
-kind: Namespace
+apiversion: v1
+kind: namespace
 metadata:
   labels:
     name: pihole
   name: pihole
+
+---
+apiversion: v1
+kind: namespace
+metadata:
+  labels:
+    name: private
+  name: private
