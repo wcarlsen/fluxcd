@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: wcarlsen-webapp
-        image: wcarlsen/wcarlsen-webapp:0.2
+        image: wcarlsen/wcarlsen-webapp:0.3
         ports:
         - name: web
           containerPort: 3000
