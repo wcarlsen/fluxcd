@@ -65,7 +65,7 @@ metadata:
   name: db
 
 ---
-apiversion: v1
+apiVersion: v1
 kind: namespace
 metadata:
   labels:
@@ -73,7 +73,7 @@ metadata:
   name: pihole
 
 ---
-apiversion: v1
+apiVersion: v1
 kind: namespace
 metadata:
   labels:
