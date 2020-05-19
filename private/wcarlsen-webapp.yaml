@@ -1,58 +1,58 @@
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: wcarlsen-webapp
-  namespace: private
-  labels:
-    app: wcarlsen-webapp
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: wcarlsen-webapp
-  template:
-    metadata:
-      labels:
-        app: wcarlsen-webapp
-    spec:
-      containers:
-      - name: wcarlsen-webapp
-        image: wcarlsen/wcarlsen-webapp:0.2
-        ports:
-        - name: web
-          containerPort: 3000
+#---
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+  #name: wcarlsen-webapp
+  #namespace: private
+  #labels:
+    #app: wcarlsen-webapp
+#spec:
+  #replicas: 1
+  #selector:
+    #matchLabels:
+      #app: wcarlsen-webapp
+  #template:
+    #metadata:
+      #labels:
+        #app: wcarlsen-webapp
+    #spec:
+      #containers:
+      #- name: wcarlsen-webapp
+        #image: wcarlsen/wcarlsen-webapp:0.2
+        #ports:
+        #- name: web
+          #containerPort: 3000
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: wcarlsen-webapp
-  namespace: private
-spec:
-  type: ClusterIP
-  selector:
-    app: wcarlsen-webapp
-  ports:
-  - name: web
-    protocol: TCP
-    port: 3000
-    targetPort: 3000
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+  #name: wcarlsen-webapp
+  #namespace: private
+#spec:
+  #type: ClusterIP
+  #selector:
+    #app: wcarlsen-webapp
+  #ports:
+  #- name: web
+    #protocol: TCP
+    #port: 3000
+    #targetPort: 3000
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: wcarlsen-webapp
-  namespace: private
-spec:
-  entrypoints:
-  - https
-  routes:
-  - match: Host(`wcarlsen.duckdns.org`) && PathPrefix(`/wcarlsen`)
-    kind: Rule
-    services:
-    - name: wcarlsen-webapp
-      port: 3000
-  tls:
-    certResolver: default
+#---
+#apiVersion: traefik.containo.us/v1alpha1
+#kind: IngressRoute
+#metadata:
+  #name: wcarlsen-webapp
+  #namespace: private
+#spec:
+  #entrypoints:
+  #- https
+  #routes:
+  #- match: Host(`wcarlsen.duckdns.org`) && PathPrefix(`/wcarlsen`)
+    #kind: Rule
+    #services:
+    #- name: wcarlsen-webapp
+      #port: 3000
+  #tls:
+    #certResolver: default
