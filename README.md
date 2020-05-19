@@ -10,7 +10,7 @@ I went with [Ubuntu server 19.10](https://ubuntu.com/download/server), because w
 snap install microk8s --classic
 
 # Enable addons
-sudo microk8s.enable dns storage metrics-server
+sudo microk8s.enable dns storage metrics-server jaeger
 
 # Get kube config and remember to change address to other than localhost
 sudo microk8s.kubectl config view --raw

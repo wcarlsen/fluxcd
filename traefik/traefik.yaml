@@ -204,6 +204,7 @@ spec:
             - --api.insecure
             - --accessLog.format=json
             - --metrics.prometheus
+            - --tracing.jaeger=true
             - --entrypoints.web.Address=:8000
             - --entrypoints.websecure.Address=:4443
             - --providers.kubernetescrd
