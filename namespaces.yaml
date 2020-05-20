@@ -71,3 +71,11 @@ metadata:
   labels:
     name: pihole
   name: pihole
+
+---
+apiVersion: v1
+kind: namespace
+metadata:
+  labels:
+    name: webapp
+  name: webapp
