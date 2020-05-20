@@ -54,9 +54,8 @@ spec:
     services:
     - name: wcarlsen-webapp
       port: 3000
-     middlewares:
-     - name: traefik-redirectscheme
-       namespace: traefik
-       namespace: traefik
+    middlewares:
+    - name: traefik-redirectscheme
+      namespace: traefik
   tls:
     certResolver: default
