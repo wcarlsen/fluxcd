@@ -205,6 +205,7 @@ spec:
             - --accessLog.format=json
             - --metrics.prometheus
             - --tracing.jaeger=true
+            - --tracing.jaeger.gen128Bit
             - --tracing.jaeger.collector.endpoint=http://simplest-collector.default.svc.cluster.local:14268/api/traces?format=jaeger.thrift
             - --entrypoints.web.Address=:8000
             - --entrypoints.websecure.Address=:4443
