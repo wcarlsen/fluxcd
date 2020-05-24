@@ -13,12 +13,55 @@ spec:
   values:
     frontend:
         env:
-          API_EXTERNAL_URL: //flux-web-backend:3000/api/v1
-          WS_URL: wss://flux-web-backend:3000/ws/v1
+          API_EXTERNAL_URL: //wcarlsen.duckdns.org/flux-backend/api/v1
+          WS_URL: wss://wcarlsen.duckdns.org/flux-backend/ws/v1
     ingress:
       hosts:
-        - host: flux-web.my-domain
-          paths: 
+        - host: wcarlsen.duckdns.org
+          paths:
             - frontend: /
             - backend: /api
             - backend: /ws
+    readOnly: "true"
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: flux-backend
+  namespace: flux
+spec:
+  entrypoints:
+  - https
+  routes:
+  - match: Host(`wcarlsen.duckdns.org`) && PathPrefix(`/flux-backend`)
+    kind: Rule
+    services:
+    - name: flux-web-backend
+      port: 80
+    middlewares:
+    - name: traefik-auth
+      namespace: traefik
+  tls:
+    certResolver: default
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: flux-frontend
+  namespace: flux
+spec:
+  entrypoints:
+  - https
+  routes:
+  - match: Host(`wcarlsen.duckdns.org`) && PathPrefix(`/flux`)
+    kind: Rule
+    services:
+    - name: flux-web-frontend
+      port: 80
+    middlewares:
+    - name: traefik-auth
+      namespace: traefik
+  tls:
+    certResolver: default

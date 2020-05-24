@@ -73,22 +73,22 @@ spec:
       storage: 100Mi
 
 ---
- apiVersion: traefik.containo.us/v1alpha1
- kind: IngressRoute
- metadata:
-   name: sonarr
-   namespace: betamax
- spec:
-   entrypoints:
-   - https
-   routes:
-   - match: Host(`wcarlsen.duckdns.org`) && PathPrefix(`/sonarr`)
-     kind: Rule
-     services:
-     - name: sonarr
-       port: 8989
-     middlewares:
-     - name: traefik-auth
-       namespace: traefik
-   tls:
-     certResolver: default
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: sonarr
+  namespace: betamax
+spec:
+  entrypoints:
+  - https
+  routes:
+  - match: Host(`wcarlsen.duckdns.org`) && PathPrefix(`/sonarr`)
+    kind: Rule
+    services:
+    - name: sonarr
+      port: 8989
+    middlewares:
+    - name: traefik-auth
+      namespace: traefik
+  tls:
+    certResolver: default
