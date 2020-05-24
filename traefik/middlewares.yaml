@@ -18,32 +18,32 @@ spec:
   redirectScheme:
     scheme: https
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: flux
-  namespace: traefik
-spec:
-  stripPrefix:
-    prefixes:
-      - /flux-backend
-      - /flux
+#---
+#apiVersion: traefik.containo.us/v1alpha1
+#kind: Middleware
+#metadata:
+  #name: flux
+  #namespace: traefik
+#spec:
+  #stripPrefix:
+    #prefixes:
+      #- /flux-backend
+      #- /flux
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: cors
-  namespace: traefik
-spec:
-  headers:
-    accessControlAllowMethods:
-      - "GET"
-      - "POST"
-      - "OPTIONS"
-      - "PUT"
-    accessControlAllowOriginList:
-      - "https://wcarlsen.duckdns.org/flux-backend"
-    accessControlMaxAge: 100
-    addVaryHeader: "true"
+#---
+#apiVersion: traefik.containo.us/v1alpha1
+#kind: Middleware
+#metadata:
+  #name: cors
+  #namespace: traefik
+#spec:
+  #headers:
+    #accessControlAllowMethods:
+      #- "GET"
+      #- "POST"
+      #- "OPTIONS"
+      #- "PUT"
+    #accessControlAllowOriginList:
+      #- "https://wcarlsen.duckdns.org/flux-backend"
+    #accessControlMaxAge: 100
+    #addVaryHeader: "true"
