@@ -29,3 +29,20 @@ spec:
     prefixes:
       - /flux-backend
       - /flux
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: cors
+  namespace: flux
+spec:
+  headers:
+    #accessControlAllowMethods:
+      #- "GET"
+      #- "OPTIONS"
+      #- "PUT"
+    accessControlAllowOriginList:
+      - "https://wcarlsen.duckdns.org/flux-backend"
+    accessControlMaxAge: 100
+    addVaryHeader: "true"

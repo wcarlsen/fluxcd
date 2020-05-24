@@ -42,6 +42,8 @@ spec:
     middlewares:
     - name: flux
       namespace: traefik
+    - name: cors
+      namespace: traefik
   tls:
     certResolver: default
 
