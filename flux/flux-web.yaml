@@ -40,7 +40,7 @@ spec:
     - name: flux-web-backend
       port: 80
     middlewares:
-    - name: traefik-auth
+    - name: flux
       namespace: traefik
   tls:
     certResolver: default
@@ -62,6 +62,8 @@ spec:
       port: 80
     middlewares:
     - name: traefik-auth
+      namespace: traefik
+    - name: flux
       namespace: traefik
   tls:
     certResolver: default

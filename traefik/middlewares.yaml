@@ -13,6 +13,19 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: traefik-redirectscheme
+  namespace: traefik
 spec:
   redirectScheme:
     scheme: https
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: flux
+  namespace: traefik
+spec:
+  stripPrefix:
+    prefixes:
+      - /flux-backend
+      - /flux
