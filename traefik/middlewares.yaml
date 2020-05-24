@@ -38,10 +38,11 @@ metadata:
   namespace: traefik
 spec:
   headers:
-    #accessControlAllowMethods:
-      #- "GET"
-      #- "OPTIONS"
-      #- "PUT"
+    accessControlAllowMethods:
+      - "GET"
+      - "POST"
+      - "OPTIONS"
+      - "PUT"
     accessControlAllowOriginList:
       - "https://wcarlsen.duckdns.org/flux-backend"
     accessControlMaxAge: 100
