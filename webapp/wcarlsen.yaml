@@ -49,13 +49,10 @@ spec:
   entrypoints:
   - https
   routes:
-  - match: Host(`wcarlsen.duckdns.org`) && PathPrefix(`/wcarlsen`)
+  - match: Host(`wcarlsen.duckdns.org`)
     kind: Rule
     services:
     - name: wcarlsen-webapp
       port: 3000
-    middlewares:
-    - name: wcarlsen
-      namespace: traefik
   tls:
     certResolver: default
