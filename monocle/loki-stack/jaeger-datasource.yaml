@@ -12,18 +12,18 @@ data:
     - name: Jaeger
       type: jaeger
       access: browser
-      url: http://localhost:16686
+      url: http://simplest-query:16686
       editable: false
 
-    #- name: Loki-jaeger
-      #type: loki
-      #access: proxy
-      #url: http://loki-stack:3100
-      #editable: false
-      #isDefault: false
-      #jsonData:
-        #derivedFields:
-          #- datasourceName: Jaeger
-            #matcherRegex: "traceID=(\\w+)"
-            #name: TraceID
-            #url: "http://localhost:16686/trace/${__value.raw}"
+    - name: Loki-jaeger
+      type: loki
+      access: proxy
+      url: http://loki-stack:3100
+      editable: false
+      isDefault: false
+      jsonData:
+        derivedFields:
+          - datasourceName: Jaeger
+            matcherRegex: "traceID=(\\w+)"
+            name: TraceID
+            url: "http://localhost:16686/trace/${__value.raw}"
