@@ -78,7 +78,7 @@
             - source_labels: [__param_target]
               target_label: instance
             - target_label: __address__
-              replacement: prometheus-blackbox-exporter:
+              replacement: prometheus-blackbox-exporter:9115
         - job_name: 'speedtest'
           metrics_path: /probe
           static_configs:
