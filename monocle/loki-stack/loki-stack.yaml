@@ -81,6 +81,7 @@
               replacement: prometheus-blackbox-exporter:9115
         - job_name: 'speedtest'
           metrics_path: /probe
+          scrape_interval: 4m
           scrape_timeout: 2m
           static_configs:
             - targets:
