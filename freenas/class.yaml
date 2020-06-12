@@ -23,7 +23,7 @@ parameters:
   # example: tank/k8s/mycluster
   # default: tank
   #datasetParentName:
-  datasetParentName: mnt/vol0/k8s
+  datasetParentName: vol0
 
   # whether to enforce quotas for each dataset
   # if enabled each newly provisioned dataset will set the appropriate quota
