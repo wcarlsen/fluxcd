@@ -30,12 +30,14 @@ parameters:
   # per the PVC
   # default: true
   #datasetEnableQuotas:
+  datasetEnableQuotas: false
 
   # whether to reserve space when the dataset is create
   # if enabled each newly provisioned dataset will set the appropriate value
   # per the PVC
   # default: true
   #datasetEnableReservation:
+  datasetEnableReservation: false
 
   # if enabled provisioner will create parent datasets for each namespace
   # otherwise, all datasets will be provisioned in a flat manner
