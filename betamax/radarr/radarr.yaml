@@ -72,23 +72,3 @@ spec:
     requests:
       storage: 100Mi
 
----
- apiVersion: traefik.containo.us/v1alpha1
- kind: IngressRoute
- metadata:
-   name: radarr
-   namespace: betamax
- spec:
-   entrypoints:
-   - https
-   routes:
-   - match: Host(`wcarlsen.duckdns.org`) && PathPrefix(`/radarr`)
-     kind: Rule
-     services:
-     - name: radarr
-       port: 7878
-     middlewares:
-     - name: traefik-auth
-       namespace: traefik
-   tls:
-     certResolver: default

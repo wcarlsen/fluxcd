@@ -39,20 +39,4 @@ spec:
     port: 3000
     targetPort: 3000
 
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: wcarlsen-webapp
-  namespace: webapp
-spec:
-  entrypoints:
-  - https
-  routes:
-  - match: Host(`wcarlsen.duckdns.org`)
-    kind: Rule
-    services:
-    - name: wcarlsen-webapp
-      port: 3000
-  tls:
-    certResolver: default
+
